@@ -1,0 +1,32 @@
+{
+  "name": "mnml",
+  "version": "1.0.0",
+  "description": "A minimal static site generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexrdz/mnml.git"
+  },
+  "keywords": [
+    "static",
+    "site",
+    "js",
+    "node"
+  ],
+  "author": "alexrdz",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexrdz/mnml/issues"
+  },
+  "homepage": "https://github.com/alexrdz/mnml#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "handlebars": "^4.0.11",
+    "marked": "^0.4.0",
+    "meta-marked": "^0.4.2",
+    "pug": "^2.0.3"
+  }
+}
