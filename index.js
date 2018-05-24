@@ -2,6 +2,7 @@ const marked = require('meta-marked');
 const pug = require('pug');
 const handlebars = require('handlebars');
 const ejs = require('ejs');
+const engines = {pug, handlebars, ejs};
 const chokidar = require('chokidar');
 const fs = require('fs');
 const path = require('path');
@@ -77,17 +78,7 @@ function createHTMLFile (template, data, fileNameWithoutExtension) {
       return;
     }
     
-    if (templateEngine === 'pug') {
-      html = pug.compile(fileData)({data});
-    }
-      
-    if (templateEngine === 'handlebars') {
-      html = handlebars.compile(fileData.toString())({data});
-    }
-    
-    if (templateEngine === 'ejs') {
-      html = ejs.compile(fileData.toString())({data});
-    }
+    html = engines[templateEngine].compile(fileData)({data});
     
     if (!fs.existsSync(distDir)) {
       fs.mkdirSync(distDir);

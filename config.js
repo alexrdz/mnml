@@ -3,5 +3,5 @@ module.exports = {
   distDir: 'dist',
   pagesDir: 'pages',
   sourceDir: 'src',
-  templateEngine: 'ejs'
+  templateEngine: 'pug'
 }
