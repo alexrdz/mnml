@@ -1,4 +1,6 @@
 module.exports = {
   sourceDir: 'src',
-  pagesDir: 'pages'
+  pagesDir: 'pages',
+  distDir: 'dist',
+  templateEngine: 'pug'
 }

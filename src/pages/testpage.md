@@ -1,5 +1,5 @@
 ---
-title: Test Page
+title: A MNML Template
 template: portfolio-item
 ...
 

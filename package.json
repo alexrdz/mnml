@@ -4,7 +4,8 @@
   "description": "A minimal static site generator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "test"
   },
   "repository": {
     "type": "git",
@@ -23,10 +24,17 @@
   },
   "homepage": "https://github.com/alexrdz/mnml#readme",
   "dependencies": {
+    "chokidar": "^2.0.3",
     "ejs": "^2.6.1",
     "handlebars": "^4.0.11",
     "marked": "^0.4.0",
     "meta-marked": "^0.4.2",
     "pug": "^2.0.3"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "connect": "^3.6.6",
+    "mocha": "^5.2.0",
+    "serve-static": "^1.13.2"
   }
 }
