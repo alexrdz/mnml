@@ -1,9 +1,11 @@
 const marked = require('meta-marked');
 const pug = require('pug');
 const handlebars = require('handlebars');
+const ejs = require('ejs');
 const chokidar = require('chokidar');
 const fs = require('fs');
 const path = require('path');
+const ncp = require('ncp');
 const connect = require('connect');
 const serveStatic = require('serve-static');
 
@@ -12,6 +14,7 @@ const distDir = path.join('./', config.distDir || 'dist');
 const sourceDir = path.join(__dirname, config.sourceDir || 'src');
 const templateEngine = config.templateEngine || 'pug';
 const pagesDir = path.join(sourceDir, config.pagesDir || 'pages');
+const assets = path.join(sourceDir, config.assetsDir || 'assets');
 const watcher = chokidar.watch(sourceDir, {
   ignored: /(^|[\/\\])\../,
   persistent: true
@@ -82,6 +85,10 @@ function createHTMLFile (template, data, fileNameWithoutExtension) {
       html = handlebars.compile(fileData.toString())({data});
     }
     
+    if (templateEngine === 'ejs') {
+      html = ejs.compile(fileData.toString())({data});
+    }
+    
     if (!fs.existsSync(distDir)) {
       fs.mkdirSync(distDir);
     }
@@ -93,9 +100,27 @@ function createHTMLFile (template, data, fileNameWithoutExtension) {
     if (!fs.existsSync(`${distDir}/${fileNameWithoutExtension}`)) {
       fs.mkdirSync(`${distDir}/${fileNameWithoutExtension}`);
     }
+
+    moveAssets();    
   
     return writeHTML(`${distDir}/${fileNameWithoutExtension}/index.html`, html);
   });      
+}
+
+function moveAssets () {
+  ncp.limit = 16;
+  const dist = path.join(distDir, config.assetsDir);
+  
+  if (!fs.existsSync(dist)) {
+    fs.mkdirSync(dist);
+  }
+ 
+  ncp(assets, dist, function (err) {
+  if (err) {
+    return console.error(err);
+  }
+  console.log('assets successfully copied');
+  });
 }
 
 const serverPath = path.join(__dirname, distDir);
