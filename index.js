@@ -44,10 +44,9 @@ function compileMarkdownAndWriteToFile (file) {
   if (data.meta) {
     const templateName = data.meta.template;
     const templateFile = `./templates/${data.meta.template}.${templateEngine}`;
-    const template = path.join(path.join(sourceDir, templateFile));
+    const template = path.join(sourceDir, templateFile);
     
     createHTMLFile(template, data, fileNameWithoutExtension);
-
   }
 }
 
@@ -71,14 +70,13 @@ function getFileExtension (file) {
 
 function createHTMLFile (template, data, fileNameWithoutExtension) {
   fs.readFile(template, (err, fileData) => {
-    let html;
 
     if (err) {
       console.log(`cannot read file ${template}: `, err);
       return;
     }
     
-    html = engines[templateEngine].compile(fileData)({data});
+    const html = engines[templateEngine].compile(fileData, {filename: template})({data});
     
     if (!fs.existsSync(distDir)) {
       fs.mkdirSync(distDir);
@@ -100,17 +98,18 @@ function createHTMLFile (template, data, fileNameWithoutExtension) {
 
 function moveAssets () {
   ncp.limit = 16;
-  const dist = path.join(distDir, config.assetsDir);
+  const assetsDest = path.join(distDir, config.assetsDir);
   
-  if (!fs.existsSync(dist)) {
-    fs.mkdirSync(dist);
+  if (!fs.existsSync(assetsDest)) {
+    fs.mkdirSync(assetsDest);
   }
  
-  ncp(assets, dist, function (err) {
-  if (err) {
-    return console.error(err);
-  }
-  console.log('assets successfully copied');
+  ncp(assets, assetsDest, function (err) {
+    if (err) {
+      return console.error(err);
+    }
+    
+    return console.log('assets successfully copied');
   });
 }
 
