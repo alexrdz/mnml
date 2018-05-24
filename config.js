@@ -1,6 +1,7 @@
 module.exports = {
-  sourceDir: 'src',
-  pagesDir: 'pages',
+  assetsDir: 'assets',
   distDir: 'dist',
-  templateEngine: 'pug'
+  pagesDir: 'pages',
+  sourceDir: 'src',
+  templateEngine: 'ejs'
 }
