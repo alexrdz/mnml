@@ -76,7 +76,7 @@ function createHTMLFile (template, data, fileNameWithoutExtension) {
       return;
     }
     
-    const html = engines[templateEngine].compile(fileData, {filename: template})({data});
+    const html = engines[templateEngine].compile(fileData.toString(), {filename: template})({data});
     
     if (!fs.existsSync(distDir)) {
       fs.mkdirSync(distDir);
