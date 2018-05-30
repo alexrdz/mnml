@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+
+const minimist = require('minimist');
+const fs = require('fs');
+const path = require('path');
+const exec = require("child_process").exec
+
+
+  
+  const args = minimist(process.argv.slice(2));
+  const cmd = args._[0];
+  const eng = args.engine;
+  const name = args.name;
+  const configFilePath = path.join(process.cwd(), `index.js`);
+
+  
+
+
+  if (cmd === 'new') {
+    if (!fs.existsSync(name)) {
+      fs.mkdirSync(name);
+    }
+    
+      const indexFileData = `
+        const Mnml = require('mnml');
+    
+        Mnml({
+          assetsDir: 'assets',
+          distDir: 'dist',
+          pagesDir: 'pages',
+          sourceDir: 'src',
+          templateEngine: '${eng}'
+        });
+      `;
+    
+      fs.writeFile(`${name}/index.js`, indexFileData, (err) => {
+        if (err) return console.log('could not write config file: ', err);
+      });
+    
+    
+    
+      fs.mkdirSync(`${name}/src`);
+      fs.mkdirSync(`${name}/src/assets`);
+      fs.mkdirSync(`${name}/src/pages`);
+    
+      console.log(`project created... :]`);
+      console.log('welcome to mnml');
+
+  }
+  
+
+  if (cmd === undefined) {
+    fs.readFile(configFilePath, (err, content) => {
+      if(err) {
+        console.log('configFilePath', configFilePath);
+        console.error('[Mnml ERROR]: Could not find/read `index.js` file');
+        return;
+      }
+  
+      exec(`node ${configFilePath}`, function(err, stdout) {
+        if(err) {
+          console.error('[Mnml ERROR]: ', err);
+        }
+        console.log(stdout);
+      });
+    });
+
+  }
+
+
+  if (cmd !== 'new' && cmd !== undefined) {
+    console.log(`
+    i do not recognize that command. 
+    you must declare a new mnml installation with a templating engine [pug, ejs, handlebars] 
+    and name like so:
+        
+        \`mnml new --engine ejs --name yourproject\`
+        `);    
+  }
+
+
+
+
