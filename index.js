@@ -126,10 +126,3 @@ const Miniml = (options) => {
 };
 
 module.exports = Miniml;
-
-
-// module.exports = {
-//   compileMarkdownAndWriteToFile,
-//   getFileNameWithoutExtension,
-//   writeHTML
-// }
