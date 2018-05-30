@@ -11,12 +11,19 @@
     "type": "git",
     "url": "git+https://github.com/alexrdz/mnml.git"
   },
+  "engines": {
+    "node": ">=8"
+  },
   "keywords": [
     "static",
     "site",
     "js",
     "node"
   ],
+  "preferGlobal": true,
+  "bin": {
+    "mnml": "bin/mnml"
+  },
   "author": "alexrdz",
   "license": "MIT",
   "bugs": {
@@ -29,6 +36,7 @@
     "handlebars": "^4.0.11",
     "marked": "^0.4.0",
     "meta-marked": "^0.4.2",
+    "minimist": "^1.2.0",
     "ncp": "^2.0.0",
     "pug": "^2.0.3"
   },
