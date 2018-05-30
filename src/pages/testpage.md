@@ -1,5 +1,5 @@
 ---
-title: A MNML Template - Portfolio
+title: A Miniml Template - Portfolio
 template: portfolio-item
 ...
 

@@ -1,5 +1,5 @@
 ---
-title: A MNML Template
+title: A Miniml Template
 template: home
 ...
 
