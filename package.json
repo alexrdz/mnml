@@ -1,5 +1,5 @@
 {
-  "name": "mnml",
+  "name": "mnml-sg",
   "version": "1.0.0",
   "description": "A minimal static site generator",
   "main": "index.js",
@@ -22,7 +22,7 @@
   ],
   "preferGlobal": true,
   "bin": {
-    "mnml": "bin/mnml"
+    "mnml": "bin/mnml-sg"
   },
   "author": "alexrdz",
   "license": "MIT",

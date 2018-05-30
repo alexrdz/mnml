@@ -4,7 +4,7 @@ A minimal static site generator
 
 ### Install
 
-`$ npm i -g mnml`
+`$ npm i -g mnml-sg`
 
 ### Create a project
 ```
