@@ -22,9 +22,9 @@ const exec = require("child_process").exec
     }
     
       const indexFileData = `
-        const Mnml = require('mnml');
+        const Miniml = require('Miniml');
     
-        Mnml({
+        Miniml({
           assetsDir: 'assets',
           distDir: 'dist',
           pagesDir: 'pages',
@@ -44,7 +44,7 @@ const exec = require("child_process").exec
       fs.mkdirSync(`${name}/src/pages`);
     
       console.log(`project created... :]`);
-      console.log('welcome to mnml');
+      console.log('welcome to Miniml');
 
   }
   
@@ -53,13 +53,13 @@ const exec = require("child_process").exec
     fs.readFile(configFilePath, (err, content) => {
       if(err) {
         console.log('configFilePath', configFilePath);
-        console.error('[Mnml ERROR]: Could not find/read `index.js` file');
+        console.error('[Miniml ERROR]: Could not find/read `index.js` file');
         return;
       }
   
       exec(`node ${configFilePath}`, function(err, stdout) {
         if(err) {
-          console.error('[Mnml ERROR]: ', err);
+          console.error('[Miniml ERROR]: ', err);
         }
         console.log(stdout);
       });
@@ -71,10 +71,10 @@ const exec = require("child_process").exec
   if (cmd !== 'new' && cmd !== undefined) {
     console.log(`
     i do not recognize that command. 
-    you must declare a new mnml installation with a templating engine [pug, ejs, handlebars] 
+    you must declare a new Miniml installation with a templating engine [pug, ejs, handlebars] 
     and name like so:
         
-        \`mnml new --engine ejs --name yourproject\`
+        \`Miniml new --engine ejs --name yourproject\`
         `);    
   }
 

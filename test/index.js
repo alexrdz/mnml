@@ -3,7 +3,7 @@ const assert = require('chai').assert;
 const fns = require('../index');
 console.log('getFileNameWithoutExtension', fns.getFileNameWithoutExtension);
 
-describe("mnml", () => {
+describe("miniml", () => {
   it('has a function named getFileNameWithoutExtension', () => {
     const func = fns.getFileNameWithoutExtension;
 

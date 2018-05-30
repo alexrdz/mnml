@@ -10,7 +10,7 @@ const ncp = require('ncp');
 const connect = require('connect');
 const serveStatic = require('serve-static');
 
-const Mnml = (options) => {
+const Miniml = (options) => {
   const config = options;
   const distDir = path.join('./', config.distDir || 'dist');
   const sourceDir = path.join(__dirname, config.sourceDir || 'src');
@@ -125,7 +125,7 @@ const Mnml = (options) => {
   
 };
 
-module.exports = Mnml;
+module.exports = Miniml;
 
 
 // module.exports = {
